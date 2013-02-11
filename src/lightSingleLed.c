@@ -54,26 +54,19 @@ int main(int argc, char **argv)
   * so at least you still have your code changes written to the SD-card! *
  \************************************************************************/
 
-  // Set GPIO pins 7-11 to output
-  for (g=17; g<=17; g++)
-  {
-    INP_GPIO(g); // must use INP_GPIO before we can use OUT_GPIO
-    OUT_GPIO(g);
+  // We will use GPIO pin 17 here
+  g = 17;
+  
+  // prep pin for output
+  INP_GPIO(g); // must use INP_GPIO before we can use OUT_GPIO
+  OUT_GPIO(g);
+
+  for (rep = 0; rep < 100; ++rep ){
+  GPIO_SET = 1<<g;
+  GPIO_CLR = 1<<g;
   }
 
-  for (rep=0; rep<10; rep++)
-  {
-      for (g=17; g<=17; g++)
-      {
-          GPIO_SET = 1<<g;
-          sleep(1);
-      }
-      for (g=17; g<=17; g++)
-      {
-          GPIO_CLR = 1<<g;
-          sleep(1);
-      }
-  }
+
 
   return 0;
 
